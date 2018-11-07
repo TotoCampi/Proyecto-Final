@@ -8,14 +8,13 @@ app.use(express.json());
 // le digo al servidor que escuchar
 var MongoClient=require('mongodb').MongoClient;
 var url= "mongodb://localhost:27017/";
-const collectionName= 'Number List'
 // Crear la base de datos y una collection
 MongoClient.connect(url, function(err,db){
   if (err) {
     console.log('Error!',err)
   }
 
-var collectionName = 'rtu data'
+const collectionName = 'rtu data'
 var dbObject= db.db("mydb")
   dbObject.createCollection(collectionName, function(err, response){
     if (err) {
@@ -26,14 +25,6 @@ var dbObject= db.db("mydb")
     db.close();
   });
 });
-
-
-
-
-
-
-
-
 
 
 
