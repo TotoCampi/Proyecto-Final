@@ -15,7 +15,8 @@ MongoClient.connect(url, function(err,db){
     console.log('Error!',err)
   }
 
-  var dbObject= db.db("mydb")
+var collectionName = 'rtu data'
+var dbObject= db.db("mydb")
   dbObject.createCollection(collectionName, function(err, response){
     if (err) {
       console.log("Error!");
