@@ -9,9 +9,12 @@ server.on('connection', function (client) {
   console.log(greenColor, 'New Connection')
 })
 server.on('readHoldingRegisters', function (request, response, send) {
+  var number = setInterval(random, 500);
 
-  /* Implement your own */
-
+  function random() {
+    var number = Math.floor((Math.random() * 100) + 1);
+    console.log(number);
+  }
 })
 server.on('WriteSingleRegister', function (value, address) {
   console.log('New {register, value}: {', address, ',', server.holding.readUInt16BE(address), '}')
