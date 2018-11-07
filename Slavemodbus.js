@@ -9,14 +9,23 @@ server.on('connection', function (client) {
   console.log(greenColor, 'New Connection')
 })
 server.on('readHoldingRegisters', function (request, response, send) {
-  var number = setInterval(random, 500);
+  console.log('READ {register, value}: {', request.address, ',', server.holding.readUInt16BE(request.address), '}')
 
-  function random() {
-    var number = Math.floor((Math.random() * 100) + 1);
-    console.log(number);
-  }
+  send(response)
+
 })
 server.on('WriteSingleRegister', function (value, address) {
   console.log('New {register, value}: {', address, ',', server.holding.readUInt16BE(address), '}')
 })
+setInterval(() => {
+  server.holding.writeUInt16BE('0x' + Math.floor(Math.random() * 20).toString(16), 2)
+})
 netServer.listen(3333)
+// server.on('readCoils', function (request, response, send) {
+//   /* Implement your own */
+//   console.log(request);
+//   response.body.coils[0] = true
+//   response.body.coils[1] = false
+//
+//   send(response)
+// })

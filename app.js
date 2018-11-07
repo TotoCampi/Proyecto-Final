@@ -34,20 +34,42 @@ let net = require('net');
 let socket = new net.Socket();
 let client = new Modbus.client.TCP(socket);
 let options = {
-'host' : '172.22.35.219',
-'port' : 3333
+'host' : '127.0.0.1',
+'port' : 3333,
+'debug': true
 }
 
 socket.on('connect', function () {
-  client.writeSingleRegister(1002, 333)
-    .then(function (resp) {
-      console.log(resp)
-      socket.end()
-    }).catch(function () {
-      console.error(arguments)
-      socket.end()
-    })
+  setInterval(() => {
+    // client.writeSingleRegister(0, 33)
+    //  .then(function (resp) {
+    //    console.log(resp)
+    //    client.readHoldingRegisters(0, 1)
+    //      .then(function (resp) {
+    //        console.log("READ response: ", resp.response._body.valuesAsArray)
+    //        socket.end()
+    //      }).catch(function (err) {
+    //        console.error(err)
+    //        socket.end()
+    //      })
+    //  }).catch(function () {
+    //    console.error(arguments)
+    //    socket.end()
+    //  })
+    client.readHoldingRegisters(0, 2)
+      .then(function (resp) {
+        console.log("READ response: ", resp.response._body.valuesAsArray)
+      }).catch(function (err) {
+        console.error(err)
+        socket.end()
+      })
+  }, 1000);
+
+
 })
 
-socket.on('error', console.error)
+socket.on('error', (err) => console.error(err))
 socket.connect(options)
+app.listen(3000,function(){
+  console.log('Example app listening on port 3000!');
+});
