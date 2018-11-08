@@ -76,20 +76,21 @@ socket.on('connect', function () {
 
   }, 1000);
 });
+//modifique de aca
+app.get('/list', function(req,res){
+  MongoClient.connect(url, function(err,db){
 
-  // app.post('/item', function(req,res){
-  //   console.log(req.body)
-  //   // const nombre = req.body.data[0]
-  //   // const anio = req.body.data[1]
-  //   // const edad = calculateAge(parseInt(anio))
-  //   // const data= {
-  //   //   nombre: nombre,
-  //   //   edad: edad
-  //   // };
-  //   // console.log (data)
-  //   // Abrir conexion con la base de datos
-  // });
+    if (err) throw err;
 
+    var dbo= db.db("mydb")
+
+    findDocuments(dbo, function(docs){
+      db.close()
+      res.json(docs)
+    })
+  })
+});
+//hasta aca
 
 socket.on('error', (err) => console.error(err))
 socket.connect(options)
