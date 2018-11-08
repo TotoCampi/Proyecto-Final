@@ -1,12 +1,23 @@
 // var ul = document.getElementById("lista");
 // var arr = [0,0,0]
 // var number = setInterval(random, 500);
+var lista=document.getElementById("lista")
 
 fetch('http://localhost:3000/list')
 .then((res)=>{
   console.log(res)
   return res.json()
-})
+}).then ((json)=>{
+  console.log(json);
+  json.forEach((element)=>{
+    var li=document.createElement('li')
+    var label= document.createElement('label')
+    label.append("Fecha: " + element.fecha + " Numero: " + element.numero)
+    li.append(label);
+    lista.appendChild(li);
+  };
+)};
+);
 
 
 // function random() {

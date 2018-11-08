@@ -77,6 +77,18 @@ socket.on('connect', function () {
   }, 1000);
 });
 //modifique de aca
+const findDocuments = function(db, callback) {
+  // Get the documents collection
+  const collection = db.collection(collectionName);
+  // Find some documents
+  collection.find({}).toArray(function(err, docs) {
+
+    console.log("Found the following records");
+    console.log(docs)
+    callback(docs);
+  });
+}
+
 app.get('/list', function(req,res){
   MongoClient.connect(url, function(err,db){
 
