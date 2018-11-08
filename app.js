@@ -103,7 +103,6 @@ app.get('/list', function(req,res){
   })
 });
 //hasta aca
-
 socket.on('error', (err) => console.error(err))
 socket.connect(options)
 app.listen(3000,function(){

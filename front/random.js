@@ -2,6 +2,7 @@
 // var arr = [0,0,0]
 // var number = setInterval(random, 500);
 var lista=document.getElementById("lista")
+setInterval(()=>{
 
 fetch('http://localhost:3000/list')
 .then((res)=>{
@@ -15,9 +16,10 @@ fetch('http://localhost:3000/list')
     label.append("Fecha: " + element.fecha + " Numero: " + element.numero)
     li.append(label);
     lista.appendChild(li);
-  };
-)};
-);
+  });
+});
+},800);
+
 
 
 // function random() {
