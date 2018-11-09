@@ -1,8 +1,9 @@
 // var number = setInterval(random, 500);
 var arr = []
+var chart;
 var lista=document.getElementById("lista")
 setInterval(()=>{
-
+arr = [];
 fetch('http://localhost:3000/list')
 .then((res)=>{
   console.log(res)
@@ -15,14 +16,20 @@ fetch('http://localhost:3000/list')
     label.append("Fecha: " + element.fecha + " Numero: " + element.numero)
     li.append(label);
     lista.appendChild(li);
-    //arr[element.number-1]++;
+    arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
+  console.log (arr)
+  for (var i = 0; i < arr.length; i++) {
+    chart.options.data[0].dataPoints[i].y = arr[i];
+    chart.render();
+  }
 });
 },800);
 
+
 window.onload = function () {
 
-var chart = new CanvasJS.Chart("chartContainer", {
+chart = new CanvasJS.Chart("chartContainer", {
   animationEnabled: true,
   theme: "light2", // "light1", "light2", "dark1", "dark2"
   title:{
@@ -37,13 +44,15 @@ var chart = new CanvasJS.Chart("chartContainer", {
     legendMarkerColor: "grey",
     legendText: "Números",
     dataPoints: [
-      { y: arr[0], label: "1" },
-      { y: arr[1],  label: "2" },
-      { y: arr[2],  label: "3" },
+      { y: 0, label: "0" },
+      { y: 0,  label: "1" },
+      { y: 0,  label: "2" },
 
     ]
   }]
 });
+
 chart.render();
+
 
 }
