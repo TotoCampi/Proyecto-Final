@@ -15,7 +15,8 @@ fetch('http://localhost:3000/list')
   var label= document.createElement('label')
   label.append("Fecha: " + ultimo.fecha + " Numero: " + ultimo.numero)
   li.append(label);
-  lista.appendChild(li);
+  // lista.appendChild(li);
+  lista.insertBefore(li,lista.firstChild);
   json.forEach((element)=>{
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
@@ -45,7 +46,7 @@ chart = new CanvasJS.Chart("chartContainer", {
     legendMarkerColor: "grey",
     legendText: "Números",
     dataPoints: [
-      { y: 0, label: "0" },
+      { y: 0,  label: "0" },
       { y: 0,  label: "1" },
       { y: 0,  label: "2" },
 
