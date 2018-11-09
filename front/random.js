@@ -10,12 +10,13 @@ fetch('http://localhost:3000/list')
   return res.json()
 }).then ((json)=>{
   console.log(json);
+  var ultimo = json[json.length-1]
+  var li=document.createElement('li')
+  var label= document.createElement('label')
+  label.append("Fecha: " + ultimo.fecha + " Numero: " + ultimo.numero)
+  li.append(label);
+  lista.appendChild(li);
   json.forEach((element)=>{
-    var li=document.createElement('li')
-    var label= document.createElement('label')
-    label.append("Fecha: " + element.fecha + " Numero: " + element.numero)
-    li.append(label);
-    lista.appendChild(li);
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
   console.log (arr)
