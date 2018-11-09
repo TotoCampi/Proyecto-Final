@@ -18,7 +18,7 @@ server.on('WriteSingleRegister', function (value, address) {
   console.log('New {register, value}: {', address, ',', server.holding.readUInt16BE(address), '}')
 })
 setInterval(() => {
-  server.holding.writeUInt16BE('0x' + Math.floor(Math.random() * 20).toString(16), 0)
+  server.holding.writeUInt16BE('0x' + Math.floor(Math.random() * 3).toString(16), 0)
 })
 netServer.listen(3333)
 // server.on('readCoils', function (request, response, send) {
