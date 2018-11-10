@@ -34,8 +34,8 @@ fetch('http://localhost:3000/list')
   json.forEach((element)=>{
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
     setTimeout(function(){
-      $('.odometer').html(ultimo.numero);
-    }, 500);
+      $('.odometer').html("0" + ultimo.numero);
+    }, 1000);
   });
   console.log (arr)
   for (var i = 1; i < arr.length; i++) {

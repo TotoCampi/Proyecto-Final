@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <link rel="stylesheet" href="./odometer-theme-default.css" />
-<!-- <style>
+<style>
 .odometer {
-  font-size: 40px;
-} -->
+  font-size: 100px;
+}
 </style>
-
+<script>
+window.odometerOptions = {
+  format: 'dd'
+};
+</script>
+<head>
+  <meta charset="UTF-8">
+</head>
 <body>
   <div id="chartContainer" style="height: 300px; width: 100%;"></div>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
