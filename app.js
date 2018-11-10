@@ -45,7 +45,7 @@ socket.on('connect', function () {
       .then(function (resp) {
         console.log("READ response: ", resp.response._body.valuesAsArray)
         //hacer funcion DATOS desde aca
-        const fecha = new Date()
+        const fecha = new Date();
         const numero = resp.response._body.valuesAsArray[0]
         const data = {
           fecha: fecha,

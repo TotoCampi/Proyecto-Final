@@ -13,7 +13,9 @@ fetch('http://localhost:3000/list')
   var ultimo = json[json.length-1]
   var li=document.createElement('li')
   var label= document.createElement('label')
-  label.append("Fecha: " + ultimo.fecha + " Numero: " + ultimo.numero)
+  const fecha = new Date(ultimo.fecha);
+  label.append("Hora: " + (fecha.getUTCHours()+9) + ":" + fecha.getUTCMinutes() + ":" + ("0" + fecha.getUTCSeconds()).slice(-2) + " => "   + "Numero: " + ultimo.numero)
+  //label.append("Hora: " + ultimo.fecha +  " => "   + "Numero: " + ultimo.numero)
   li.append(label);
   // lista.appendChild(li);
   lista.insertBefore(li,lista.firstChild);
@@ -21,12 +23,15 @@ fetch('http://localhost:3000/list')
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
   console.log (arr)
-  for (var i = 0; i < arr.length; i++) {
-    chart.options.data[0].dataPoints[i].y = arr[i];
+  for (var i = 1; i < arr.length-1; i++) {
+    chart.options.data[0].dataPoints[i-1] = {
+      y: arr[i],
+      label: i
+    }
     chart.render();
   }
 });
-},800);
+},1000);
 
 
 window.onload = function () {
@@ -45,12 +50,7 @@ chart = new CanvasJS.Chart("chartContainer", {
     showInLegend: true,
     legendMarkerColor: "grey",
     legendText: "Números",
-    dataPoints: [
-      { y: 0,  label: "0" },
-      { y: 0,  label: "1" },
-      { y: 0,  label: "2" },
-
-    ]
+    dataPoints: []
   }]
 });
 
