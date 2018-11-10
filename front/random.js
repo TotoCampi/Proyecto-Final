@@ -14,16 +14,24 @@ fetch('http://localhost:3000/list')
   var li=document.createElement('li')
   var label= document.createElement('label')
   const fecha = new Date(ultimo.fecha);
-  label.append("Hora: " + (fecha.getUTCHours()+9) + ":" + fecha.getUTCMinutes() + ":" + ("0" + fecha.getUTCSeconds()).slice(-2) + " => "   + "Numero: " + ultimo.numero)
-  //label.append("Hora: " + ultimo.fecha +  " => "   + "Numero: " + ultimo.numero)
+  label.append(
+    "Fecha: " +
+      ("0" + fecha.getDate()).slice(-2) + "/" +
+      ("0" + (fecha.getMonth()+1)).slice(-2) + "/" +
+      fecha.getFullYear() + ", " +
+    "Hora: " +
+      ("0" + fecha.getHours()).slice(-2) + ":" +
+      ("0" + fecha.getMinutes()).slice(-2) + ":" +
+      ("0" + fecha.getSeconds()).slice(-2) + " => " +
+    "Numero: " + ultimo.numero
+  )
   li.append(label);
-  // lista.appendChild(li);
   lista.insertBefore(li,lista.firstChild);
   json.forEach((element)=>{
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
   console.log (arr)
-  for (var i = 1; i < arr.length-1; i++) {
+  for (var i = 1; i < arr.length; i++) {
     chart.options.data[0].dataPoints[i-1] = {
       y: arr[i],
       label: i
@@ -32,6 +40,7 @@ fetch('http://localhost:3000/list')
   }
 });
 },1000);
+
 
 
 window.onload = function () {
