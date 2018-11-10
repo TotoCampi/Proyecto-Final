@@ -74,7 +74,7 @@ socket.on('connect', function () {
         socket.end()
       })
 
-  }, 1000);
+  }, 3000);
 });
 //modifique de aca
 const findDocuments = function(db, callback) {

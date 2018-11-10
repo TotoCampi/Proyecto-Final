@@ -1,7 +1,11 @@
 // var number = setInterval(random, 500);
 var arr = []
 var chart;
-var lista=document.getElementById("lista")
+var lista=document.getElementById("lista");
+var odometer = document.getElementById("div");
+
+//odometer.innerHTML = "Hola";
+
 setInterval(()=>{
 arr = [];
 fetch('http://localhost:3000/list')
@@ -29,6 +33,9 @@ fetch('http://localhost:3000/list')
   lista.insertBefore(li,lista.firstChild);
   json.forEach((element)=>{
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
+    setTimeout(function(){
+      $('.odometer').html(ultimo.numero);
+    }, 500);
   });
   console.log (arr)
   for (var i = 1; i < arr.length; i++) {
@@ -39,7 +46,7 @@ fetch('http://localhost:3000/list')
     chart.render();
   }
 });
-},1000);
+},3000);
 
 
 
