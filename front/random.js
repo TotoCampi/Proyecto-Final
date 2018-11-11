@@ -27,15 +27,15 @@ fetch('http://localhost:3000/list')
       ("0" + fecha.getHours()).slice(-2) + ":" +
       ("0" + fecha.getMinutes()).slice(-2) + ":" +
       ("0" + fecha.getSeconds()).slice(-2) + " => " +
-    "Numero: " + ultimo.numero
+    "Número: " + ultimo.numero
   )
   li.append(label);
   lista.insertBefore(li,lista.firstChild);
   json.forEach((element)=>{
-    arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
     setTimeout(function(){
       $('.odometer').html("0" + ultimo.numero);
     }, 1000);
+    arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
   console.log (arr)
   for (var i = 1; i < arr.length; i++) {

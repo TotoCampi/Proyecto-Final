@@ -14,9 +14,9 @@
 
   FORMAT_PARSER = /^\(?([^)]*)\)?(?:(.)(d+))?$/;
 
-  FRAMERATE = 30;
+  FRAMERATE = 60;
 
-  DURATION = 2000;
+  DURATION = 1000;
 
   COUNT_FRAMERATE = 20;
 
