@@ -18,6 +18,9 @@ fetch('http://localhost:3000/list')
   var li=document.createElement('li')
   var label= document.createElement('label')
   const fecha = new Date(ultimo.fecha);
+  setTimeout(function(){
+    $('.odometer').html("0" + ultimo.numero);
+  }, 1000);
   label.append(
     "Fecha: " +
       ("0" + fecha.getDate()).slice(-2) + "/" +
@@ -32,9 +35,6 @@ fetch('http://localhost:3000/list')
   li.append(label);
   lista.insertBefore(li,lista.firstChild);
   json.forEach((element)=>{
-    setTimeout(function(){
-      $('.odometer').html("0" + ultimo.numero);
-    }, 1000);
     arr[element.numero] = arr[element.numero] ? arr[element.numero] + 1 : 1;
   });
   console.log (arr)

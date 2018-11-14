@@ -14,9 +14,9 @@ server.on('readHoldingRegisters', function (request, response, send) {
   send(response)
 
 })
-server.on('WriteSingleRegister', function (value, address) {
-  console.log('New {register, value}: {', address, ',', server.holding.readUInt16BE(address), '}')
-})
+// server.on('WriteSingleRegister', function (value, address) {
+//   console.log('New {register, value}: {', address, ',', server.holding.readUInt16BE(address), '}')
+// })
 setInterval(() => {
   server.holding.writeUInt16BE('0x' + Math.floor(Math.random() * 20 + 1).toString(16), 0)
 })
